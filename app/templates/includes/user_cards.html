@@ -1,0 +1,8 @@
+<ul>
+{% for user in users %}
+  <li><a href="{% url 'users:detail' user.id %}">
+    <img src="{{ user.gallery.first.image.url }}">
+    {{ user }}. {{ user.skills.all|join:", " }}. Стаж работы: {{ user.diff_date }}
+  </a></li>
+{% endfor %}
+</ul>

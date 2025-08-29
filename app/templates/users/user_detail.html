@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'users:all' %}">к списку</a>
+<h2 align="center"><img src="{{ user.gallery.first.image.url }}">{{ user.name }} {{ user.family }} ({{ user.get_gender_display }})</h2>
+<hr>
+<ul>
+    {% for skill in user.skills.all %}
+        <li>{{ skill.skill }}: {{ skill.level }}</li>
+    {% endfor %}
+</ul>
+Стаж работы: {{ user.diff_date }}.{% if user.desk.number %} Номер стола: {{ user.desk.number }}{% endif %}
+<hr>
+{% for image in user.gallery.all|slice:'1:' %}
+    <img src="{{ image.image.url }}">
+{% endfor %}
+{% endblock %}
